@@ -40,7 +40,7 @@ namespace Creator.FileLib.Service
         /// <param name="fileType">檔案類型</param>
         /// <param name="Append">是否覆蓋(true:覆寫 / false:重寫 )</param>
         /// <returns></returns>
-        public async Task WritString(string data, string fileName, string filePath, string fileType, bool Append = true)
+        public async Task WritString(string data, string fileName, string filePath, string fileType, bool append = true)
         {
             data.Check(nameof(data));
             filePath.Check(nameof(filePath));
@@ -62,7 +62,7 @@ namespace Creator.FileLib.Service
             try
             {
                 //讀出檔案
-                using StreamWriter sw = new(fullPath);
+                using StreamWriter sw = new(fullPath, append);
                 //讀出資料                   
                 await sw.WriteLineAsync(data);
                 //關閉流
@@ -82,7 +82,7 @@ namespace Creator.FileLib.Service
         /// <param name="fileType">檔案類型</param>
         /// <param name="Append">是否覆蓋(true:覆寫 / false:重寫 )</param>
         /// <returns></returns>
-        public Task WritList(List<string> data, string fileName, string filePath, string fileType, bool Append = true)
+        public Task WritList(List<string> data, string fileName, string filePath, string fileType, bool append = true)
         {
             data.Check();
             filePath.Check(nameof(filePath));
@@ -104,7 +104,7 @@ namespace Creator.FileLib.Service
             try
             {
                 //讀出檔案
-                using StreamWriter sw = new(fullPath);
+                using StreamWriter sw = new(fullPath, append);
                 //寫入資料                   
                 data.ForEach(async x => await sw.WriteLineAsync(x));
                 //關閉流
