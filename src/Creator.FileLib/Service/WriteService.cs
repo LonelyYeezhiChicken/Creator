@@ -40,7 +40,7 @@ namespace Creator.FileLib.Service
         /// <param name="fileType">檔案類型</param>
         /// <param name="Append">是否覆蓋(true:覆寫 / false:重寫 )</param>
         /// <returns></returns>
-        public async Task WritString(string data, string fileName, string filePath, string fileType, bool Append = true)
+        public async Task WritString(string data, string fileName, string filePath, string fileType, bool append = true)
         {
             data.Check(nameof(data));
             filePath.Check(nameof(filePath));
@@ -51,18 +51,18 @@ namespace Creator.FileLib.Service
             CheckDirectory(filePath);
 
             //重組檔名
-            string fullName = $"{fileName}.{fileType}";          
+            string fullName = $"{fileName}.{fileType}";
 
             //重組路徑
             string fullPath = filePath + fullName;
-            
+
             // 檢查檔案
             CheckFile(fullPath);
 
             try
             {
                 //讀出檔案
-                using StreamWriter sw = new(fullPath);
+                using StreamWriter sw = new(fullPath, append);
                 //讀出資料                   
                 await sw.WriteLineAsync(data);
                 //關閉流
@@ -82,7 +82,7 @@ namespace Creator.FileLib.Service
         /// <param name="fileType">檔案類型</param>
         /// <param name="Append">是否覆蓋(true:覆寫 / false:重寫 )</param>
         /// <returns></returns>
-        public Task WritList(List<string> data, string fileName, string filePath, string fileType, bool Append = true)
+        public async Task WritList(List<string> data, string fileName, string filePath, string fileType, bool append = true)
         {
             data.Check();
             filePath.Check(nameof(filePath));
@@ -104,9 +104,12 @@ namespace Creator.FileLib.Service
             try
             {
                 //讀出檔案
-                using StreamWriter sw = new(fullPath);
-                //寫入資料                   
-                data.ForEach(async x => await sw.WriteLineAsync(x));
+                using StreamWriter sw = new(fullPath, append);
+                //寫入資料
+                foreach (var w in data)
+                {
+                    await sw.WriteLineAsync(w);
+                }
                 //關閉流
                 sw.Close();
             }
@@ -114,8 +117,6 @@ namespace Creator.FileLib.Service
             {
                 throw new Exception("WritString error = " + ex.ToString());
             }
-
-            return Task.CompletedTask;
         }
     }
 }

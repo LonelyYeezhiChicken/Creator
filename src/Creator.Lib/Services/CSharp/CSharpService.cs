@@ -1,23 +1,46 @@
 ﻿using Creator.Lib.Interface;
 using Creator.Model.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Creator.Model.Interface;
+using Creator.Model.Template.CSharp;
 
 namespace Creator.Lib.Services.CSharp
 {
     internal class CSharpService : ICreator
     {
-        public string GetCode(string codeName, CodeTitle codeTitle, Dictionary<string, string> functionList)
+
+        private string SetService(string nameSpace, string codeName, Dictionary<string, string> functionList)
         {
-            throw new NotImplementedException();
+            ICodeGetter codeGetter = new CsService(nameSpace, codeName);
+            return codeGetter.Get();
         }
 
-        public Task<string> GetCodeAsync(string codeName, CodeTitle codeTitle, Dictionary<string, string> functionList)
+        public string GetCode(CodeTitle codeTitle, string nameSpace, string codeName, Dictionary<string, string> functionList)
         {
-            throw new NotImplementedException();
+            switch (codeTitle)
+            {
+                case CodeTitle.Service:
+                    return SetService(nameSpace, codeName, functionList);
+                //case CodeTitle.Repostiory:
+                //    break;
+                //case CodeTitle.Controller:
+                //    break;
+                //case CodeTitle.ApiController:
+                //    break;
+                //case CodeTitle.Dto:
+                //    break;
+                //case CodeTitle.Dao:
+                //    break;
+                //case CodeTitle.Model:
+                //    break;
+                //case CodeTitle.ViewModel:
+                //    break;
+                //case CodeTitle.IService:
+                //    break;
+                //case CodeTitle.IRepostiory:
+                //    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

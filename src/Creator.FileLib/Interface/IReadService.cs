@@ -18,7 +18,7 @@
         /// <param name="path">路徑</param>
         /// <param name="fileName">檔名</param>
         /// <param name="fileType">副檔名</param>
-        /// <returns></returns>
+        /// <returns>返回檔案內容</returns>
         Task<IEnumerable<string>> ReadToList(string path, string fileName, string fileType);
     }
 }
