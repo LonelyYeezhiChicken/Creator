@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Creator.Lib\Creator.Lib.csproj" />
     <ProjectReference Include="..\Creator.Model\Creator.Model.csproj" />
   </ItemGroup>
 

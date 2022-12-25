@@ -6,6 +6,13 @@ namespace Creator.FileLib
     public interface IFilerPorovider
     {
         /// <summary>
+        /// 設定路徑, 檔案, 副檔名
+        /// </summary>
+        /// <param name="path">路徑</param>
+        /// <param name="fileName">檔案</param>
+        /// <param name="fileType">副檔名</param>
+        void Create(string path, string fileName, string fileType);
+        /// <summary>
         /// 寫檔案(單筆)
         /// </summary>
         /// <param name="data">資料</param>

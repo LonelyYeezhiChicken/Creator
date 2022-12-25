@@ -51,11 +51,11 @@ namespace Creator.FileLib.Service
             CheckDirectory(filePath);
 
             //重組檔名
-            string fullName = $"{fileName}.{fileType}";          
+            string fullName = $"{fileName}.{fileType}";
 
             //重組路徑
             string fullPath = filePath + fullName;
-            
+
             // 檢查檔案
             CheckFile(fullPath);
 
@@ -106,7 +106,7 @@ namespace Creator.FileLib.Service
                 //讀出檔案
                 using StreamWriter sw = new(fullPath, append);
                 //寫入資料
-                foreach(var w in data)
+                foreach (var w in data)
                 {
                     await sw.WriteLineAsync(w);
                 }

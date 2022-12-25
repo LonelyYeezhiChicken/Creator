@@ -7,19 +7,10 @@ namespace Creator.Lib.Interface
         /// <summary>
         /// 生成某區塊程式碼
         /// </summary>
+        /// <param name="nameSpace"></param>
         /// <param name="codeName">檔案名稱</param>
-        /// <param name="codeTitle"></param>
         /// <param name="functionList"></param>
         /// <returns></returns>
-        string GetCode(string codeName, CodeTitle codeTitle, Dictionary<string, string> functionList);
-
-        /// <summary>
-        /// 非同步生成某區塊程式碼
-        /// </summary>
-        /// <param name="codeName">檔案名稱</param>
-        /// <param name="codeTitle"></param>
-        /// <param name="functionList"></param>
-        /// <returns></returns>
-        Task<string> GetCodeAsync(string codeName, CodeTitle codeTitle, Dictionary<string, string> functionList);
+        string GetCode(CodeTitle codeTitle, string nameSpace, string codeName, Dictionary<string, string> functionList);
     }
 }

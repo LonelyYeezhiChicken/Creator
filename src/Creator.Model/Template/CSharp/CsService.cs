@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Creator.Model.Interface;
 
 namespace Creator.Model.Template.CSharp
 {
-    public class CsService
+    public class CsService : ICodeGetter
     {
 
         public string NameSpace { get; private set; }
@@ -65,6 +61,10 @@ internal class {Name}Service : I{Name}
             }
         }
 
+        /// <summary>
+        /// 取得程式碼
+        /// </summary>
+        /// <returns></returns>
         public string Get()
         {
             return NameSpaceBlocek;
